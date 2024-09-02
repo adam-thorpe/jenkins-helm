@@ -504,18 +504,18 @@ controller:
     configUrls: []
     # - https://acme.org/jenkins.yaml
     # -- List of Jenkins Config as Code scripts
-    configScripts:
-      jenkins-groovy-user-tokens: |
-        groovy:
-          - script: |
-              import hudson.model.User
-              import jenkins.security.ApiTokenProperty
+    # configScripts:
+    #   groovy: |
+    #     groovy:
+    #       - script: |
+    #           import hudson.model.User
+    #           import jenkins.security.ApiTokenProperty
 
-              // workaround for setting api-key https://github.com/jenkinsci/configuration-as-code-plugin/issues/1830
-              def token = '11d851b3f9928edc4bc0ca06e59b56ff19'
-              def user = User.get('auto')
-              user.getProperty(ApiTokenProperty.class).tokenStore.addFixedNewToken("auto-token", token)
-              user.save()
+    #           // workaround for setting api-key https://github.com/jenkinsci/configuration-as-code-plugin/issues/1830
+    #           def token = '11d851b3f9928edc4bc0ca06e59b56ff19'
+    #           def user = User.get('auto')
+    #           user.getProperty(ApiTokenProperty.class).tokenStore.addFixedNewToken("auto-token", token)
+    #           user.save()
 
     #  welcome-message: |
     #    jenkins:
@@ -525,8 +525,8 @@ controller:
     # -- Jenkins Config as Code security-section
     security:
       apiToken:
-        creationOfLegacyTokenEnabled: false
-        tokenGenerationOnCreationEnabled: false
+        creationOfLegacyTokenEnabled: true
+        tokenGenerationOnCreationEnabled: true
         usageStatisticsEnabled: true
 
     # Ignored if securityRealm is defined in controller.JCasC.configScripts
